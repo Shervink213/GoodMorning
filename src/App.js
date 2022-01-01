@@ -18,7 +18,6 @@ function App() {
     weatherServices
       .getWeather()
       .then(response => {
-        console.log(response);
         setWeather(response);
       }) 
 
@@ -28,13 +27,12 @@ function App() {
     newsServices
       .getArticle()
       .then(response => {
-        console.log(response)
         setArticles(response);
-        console.log(articles);
       })
 
     
   }, [])
+
 
   return (
     <div className="App">
@@ -50,9 +48,9 @@ function App() {
       
       <Container>
         <Header as='h2' style = {{ textAlign: 'center', margin: 20}}>
-          bitcoin articles
+          articles
         </Header>
-        <ArticleList Ids = {articles} />
+        <ArticleList  />
       </Container>
       
 
