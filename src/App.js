@@ -14,25 +14,25 @@ function App() {
   const [articles, setArticles ] = useState([]);
 
   useEffect(() => {
-    try {
-      weatherServices
-        .getWeather()
-        .then(response => {
-          console.log(response);
-          setWeather(response);
-        })
 
-      
-      
-        newsServices
-          .getArticle()
-          .then(response => {
-            console.log(response);
-            setArticles(response);
-          })
-    } catch (error) {
-      console.log(error);
-    }
+    weatherServices
+      .getWeather()
+      .then(response => {
+        console.log(response);
+        setWeather(response);
+      }) 
+
+
+    
+    
+    newsServices
+      .getArticle()
+      .then(response => {
+        console.log(response)
+        setArticles(response);
+        console.log(articles);
+      })
+
     
   }, [])
 
@@ -47,20 +47,14 @@ function App() {
           </Dimmer>
         </div>
       )}
-      {(typeof articles.length > 0) ? (
-        <Container>
-          <Header as='h2' style = {{ textAlign: 'center', margin: 20}}>
-            bitcoin articles
-          </Header>
-          <ArticleList articles = {articles} />
-        </Container>
-      ): (
-        <div className="Loading">
-          <Dimmer>
-            <Loader>Loading...</Loader>
-          </Dimmer>
-        </div>
-      )}
+      
+      <Container>
+        <Header as='h2' style = {{ textAlign: 'center', margin: 20}}>
+          bitcoin articles
+        </Header>
+        <ArticleList Ids = {articles} />
+      </Container>
+      
 
     </div>
   );
