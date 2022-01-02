@@ -11,7 +11,7 @@ import "./App.css";
 
 function App() {
   const [weather, setWeather] = useState([]);
-  const [articles, setArticles ] = useState([]);
+  //const [articles, setArticles ] = useState([]);
 
   useEffect(() => {
 
@@ -21,40 +21,34 @@ function App() {
         setWeather(response);
       }) 
 
-
-    
-    
-    newsServices
-      .getArticle()
-      .then(response => {
-        setArticles(response);
-      })
-
     
   }, [])
 
 
   return (
     <div className="App">
-      {(typeof weather.main != 'undefined') ? (
-        <Weather weatherData={weather}/>
-      ): (
-        <div className="Loading">
-          <Dimmer>
-            <Loader>Loading...</Loader>
-          </Dimmer>
-        </div>
-      )}
-      
-      <Container>
-        <Header as='h2' style = {{ textAlign: 'center', margin: 20}}>
-          articles
-        </Header>
-        <ArticleList  />
-      </Container>
-      
+
+        {(typeof weather.main != 'undefined') ? (
+          <Weather weatherData={weather}/>
+        ): (
+          <div className="Loading">
+            <Dimmer>
+              <Loader>Loading...</Loader>
+            </Dimmer>
+          </div>
+        )}
+
+
+
+        <Container>
+          <Header as='h2' style = {{ textAlign: 'center', margin: 20}}>
+            Articles
+          </Header>
+          <ArticleList />
+        </Container>
 
     </div>
+    
   );
 }
 

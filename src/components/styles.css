@@ -19,7 +19,7 @@
 }
 
 .header{
-    background-color: #424242;
+    background-color: white;
     color: whitesmoke;
     font-size: 38px;
     border-radius: 20px;
@@ -63,6 +63,18 @@
     width: 35px;
     height: 35px;
 }
+
+.articles{
+    background-color: white;
+}
+.description{
+    font-size: 15px;
+    font-family: 'Recursive', sans-serif;
+    color:whitesmoke;
+}
+
+
+
 
 .flex{
     display:flex;

@@ -26,7 +26,7 @@ const Weather = ({weatherData}) =>{
             </div>
             
             <div className="flex">
-                <p className="feels">Feels Like: {weatherData.main.feels_like}</p>
+                <p className="feels">Feels Like: {weatherData.main.feels_like} &deg;C</p>
             </div>
 
             
