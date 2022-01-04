@@ -18,7 +18,7 @@ const ArticleItem = ({article}) => {
 
                         }}
                     >
-                        <Header as="h3">{article.title}</Header>
+                        <Header as="h3"><a href={article.link}>{article.title}</a></Header>
                         <List.Description className = {"description"} style={{ 
                             margin: "0 auto",
                             width:"auto",
@@ -28,10 +28,7 @@ const ArticleItem = ({article}) => {
                             {article.description}
                         </List.Description>
                         <List bulleted horizontal>
-                            <List.Item as="h3"> 
-                                <a href={article.link}>{article.title}</a>
-                            </List.Item>
-                            <List.Item>{article.source}</List.Item>
+                            <List.Item>{article.source_id}</List.Item>
                         </List>
                     </GridColumn>
                     <Grid.Column width={4}>

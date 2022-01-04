@@ -28,25 +28,27 @@ function App() {
   return (
     <div className="App">
 
-        {(typeof weather.main != 'undefined') ? (
-          <Weather weatherData={weather}/>
-        ): (
-          <div className="Loading">
-            <Dimmer>
-              <Loader>Loading...</Loader>
-            </Dimmer>
-          </div>
-        )}
+      {(typeof weather.main != 'undefined') ? (
+        <Weather weatherData={weather}/>
+      ): (
+        <div className="Loading">
+          <Dimmer>
+            <Loader>Loading...</Loader>
+          </Dimmer>
+        </div>
+      )}
+
+      <Container>
+        <Header as='h2' style = {{ textAlign: 'center', margin: 20}}>
+          News Feed
+        </Header>
+        <ArticleList />
+      </Container>
 
 
 
-        <Container>
-          <Header as='h2' style = {{ textAlign: 'center', margin: 20}}>
-            Articles
-          </Header>
-          <ArticleList />
-        </Container>
 
+        
     </div>
     
   );
