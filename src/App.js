@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import weatherServices from './services/weatherData';
-import newsServices from './services/newsData';
 import { Dimmer, Loader, Container, Header } from 'semantic-ui-react';
 import Weather from './components/Weather';
 import ArticleList from "./components/ArticleList";
+import Task from './components/Tasks';
 import "./App.css";
-
 
 
 
@@ -44,6 +43,8 @@ function App() {
         </Header>
         <ArticleList />
       </Container>
+
+      <Task />
 
 
 

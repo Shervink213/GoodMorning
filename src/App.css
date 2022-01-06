@@ -26,3 +26,36 @@
   font-size: 15px;
 }
 
+.flexTask {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading{
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+.containterTask{
+  width: 500px;
+  min-height: 300px;
+  padding: 10px;
+}
+
+.task_container{
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.line_through{
+  text-decoration: line-through;
+}
+
+.task{
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
