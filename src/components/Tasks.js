@@ -4,7 +4,6 @@ import { Paper, TextField } from '@material-ui/core';
 import { Checkbox, Button } from '@material-ui/core';
 import "./styles.css";
 
-
 const Tasks = () => {
     const [ tasks, setTasks ] = useState([]);
     const [ currentTask, setCurrentTask ] = useState("");
@@ -42,9 +41,8 @@ const Tasks = () => {
         
     }
     
-    const handleUpdate = async(event) => {
-        event.preventDefault();
-        const newTask  = tasks.find(t => t.task === currentTask);
+    const handleUpdate = async(_id) => {
+        const newTask  = tasks.find(t => t._id === _id);
         const changedTask = {...newTask, completed: !newTask.completed }
 
         try {
@@ -56,7 +54,7 @@ const Tasks = () => {
             ));
         } catch (error) {
             console.log(error);
-            setTasks(tasks.filter(t => t.task !== changedTask.task));
+            setTasks(tasks.filter(t => t._id !== changedTask._id));
         }
     }
 

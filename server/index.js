@@ -8,6 +8,7 @@ connection();
 
 app.use(express.json());
 app.use(cors());
+require('dotenv').config();
 
 app.use("/api/tasks", tasks);
 
