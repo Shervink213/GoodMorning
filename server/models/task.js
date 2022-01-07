@@ -4,12 +4,12 @@ const Schema = mongoose.Schema;
 const taskSchema = new Schema({
     task: {
         type: String,
-        required: true
+        required: true,
     },
 
     completed: {
         type: Boolean,
-        default: false
+        default: false,
     },
 
 })

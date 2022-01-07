@@ -1,12 +1,14 @@
 import axios from 'axios';
-const apiUrl = "https://localhost:8080/api/tasks";
+const apiUrl = "http://localhost:8080/api/tasks";
 
 export function getTasks(){
     return axios.get(apiUrl);
 }
 
 export function addTask(task) {
-    return axios.post(apiUrl, task);
+    return axios.post(apiUrl,{
+        task: `${task}`,
+    });
 }
 
 export function updateTask(id, task){

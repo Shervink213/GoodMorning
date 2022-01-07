@@ -12,21 +12,21 @@ const ArticleList = () => {
   
   useEffect(() => {
     async function getTopStories() {
-        const url = `https://newsdata.io/api/1/news?apikey=${process.env.REACT_APP_NEWS_API_KEY}&language=en`;
-        try {
-          const response = await fetch(url);
-          if (response.ok === false) {
-            throw new Error("Response Error:" + response.text);
-          }
-          const json = await response.json();
-          const promises = json.results;
-          const result = await Promise.all(promises);
-          setStories(result);
-        } catch (err) {
-          console.error(err.text);
+      const url = `https://newsdata.io/api/1/news?apikey=${process.env.REACT_APP_NEWS_API_KEY}&language=en`;
+      try {
+        const response = await fetch(url);
+        if (response.ok === false) {
+          throw new Error("Response Error:" + response.text);
         }
+        const json = await response.json();
+        const promises = json.results;
+        const result = await Promise.all(promises);
+        setStories(result);
+      } catch (err) {
+        console.error(err.text);
       }
-      getTopStories();
+    }
+    getTopStories();
   },[])
 
   return (
@@ -35,7 +35,7 @@ const ArticleList = () => {
       <List divided style={{ maxWidth: 900, margin: "0 auto" }}>
         {stories.map((article, index) => (
           <List.Item>
-            <ArticleItem article={article} key={article.id} />
+            <ArticleItem article={article} key={index} />
           </List.Item>
         ))}
       </List>

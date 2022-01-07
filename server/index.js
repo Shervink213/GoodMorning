@@ -4,10 +4,10 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 
-connection()
+connection();
 
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 
 app.use("/api/tasks", tasks);
 

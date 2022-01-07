@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import {addTask, getTasks, updateTask, deleteTask} from "../services/taskServices";
-import {Paper, TextField, Checkbox, Button} from '@material-ui/core'
+import { Paper, TextField } from '@material-ui/core';
+import { Checkbox, Button } from '@material-ui/core';
+import "./styles.css";
 
 
 const Tasks = () => {
     const [ tasks, setTasks ] = useState([]);
     const [ currentTask, setCurrentTask ] = useState("");
 
-    useEffect(async() => {
-        try {
-            const {data} = await getTasks();
-            setTasks(data);
-        } catch (error) {
-            console.log(error);
+    useEffect(() => {
+        async function fetchTasks() {
+           try {
+                const {data} = await getTasks();
+                console.log(data);
+                setTasks(data);
+                console.log(tasks)
+            } catch (error) {
+                console.log(error);
+            } 
         }
+        fetchTasks();
     }, [])
 
     const handleChange = (event) => {
@@ -24,11 +31,15 @@ const Tasks = () => {
         event.preventDefault();
         try {
             const {data} = await addTask(currentTask);
+            console.log(data);
             setTasks(tasks.concat(data));
             setCurrentTask("")
+            console.log(tasks);
         } catch (error) {
             console.log(error);
         }
+
+        
     }
     
     const handleUpdate = async(event) => {
@@ -64,57 +75,64 @@ const Tasks = () => {
     }
 
     return (
-        <div>
-            <h2>To-do list</h2>
-            <div className="flexTask">
-                <Paper elevation={3} className="containerTask">
+        <div className="flexTask">
+            <Paper elevation={3} className="containterTask">
                 <div className="heading">TO-DO</div>
-                <form 
+                <form
                     onSubmit={handleSubmit}
-                    className="taskFlex"
-                    style={{margin: "15px0"}}>
-                        <TextField
-                            variant='outlined'
-                            size ='small'
-                            style = {{width: '80%'}}
-                            value={currentTask}
-                            required={true}
-                            onChange={handleChange}
-                            placeholder='Add New Task'
-                        />
-                        <Button 
-                            style = {{height: "40px"}} 
-                            color="primary" 
-                            variant = "outlined"
-                            type='submit'
+                    className="flexTask"
+                    style={{ margin: "15px 0" }}
+                >
+                    <TextField
+                        variant="outlined"
+                        size="small"
+                        style={{ width: "80%" }}
+                        value={currentTask}
+                        required={true}
+                        onChange={handleChange}
+                        placeholder="Add New TO-DO"
+                    />
+                    <Button
+                        style={{ height: "40px" }}
+                        color="primary"
+                        variant="outlined"
+                        type="submit"
+                    >
+                        Add task
+                    </Button>
+                </form>
+                <div>
+                    {tasks.map((task) => (
+                        <Paper
+                            key={task._id}
+                            className="flexTask task_container"
                         >
-                            Add task
-                        </Button>
-                    </form>
-                    <div>
-                        {tasks.map((task) => {
-                            <Paper key = {task._id} className= "flexTask task_container">
-                                <Checkbox
-                                    checked={task.completed}
-                                    onClick={() => handleUpdate(task._id)}
-                                    color="primary"
-                                />
-                                <div
-                                    className={task.completed ? "task line_through" : "task"}
-                                >
-                                    {task.task}
-                                </div>
-                                <Button
-                                    onClick={() => handleDelete(task._id)}
-                                >
-                                    delete
-                                </Button>
-                            </Paper>
-                        })}
-                    </div>
-                </Paper>
-            </div>
-        </div>
+                            <Checkbox
+                                checked={task.completed}
+                                onClick={() => handleUpdate(task._id)}
+                                color="primary"
+                            />
+                            <div
+                                className={
+                                    task.completed
+                                        ? "task line_through"
+                                        : "task"
+                                }
+                            >
+                                {task.task}
+                            </div>
+                            <Button
+                                onClick={() => handleDelete(task._id)}
+                                color="secondary"
+                            >
+                                delete
+                            </Button>
+                        </Paper>
+                    ))}
+                </div>
+        </Paper>
+    </div>
+
     )
 }
 
